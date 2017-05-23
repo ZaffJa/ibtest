@@ -11,7 +11,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <!-- Container -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="/css/app.css" rel="stylesheet">
         <!-- Styles -->
         <style>
             html, body {
@@ -80,7 +80,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="innobio_logo.png" alt="innobio_logo">
+                    <img src="/innobio_logo.png" alt="innobio_logo">
                 </div>
 
                 <div class="container">
