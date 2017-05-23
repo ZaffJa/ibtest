@@ -153,4 +153,5 @@ class OrderController extends Controller
         return view('order.olist-engineer')->withOrders($orders)->withDeparments($deparments)->withSuppliers($suppliers);
     }
 
+  
 }
