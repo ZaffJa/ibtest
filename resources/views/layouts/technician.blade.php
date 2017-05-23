@@ -16,8 +16,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
     <!-- Scripts -->
     <script>
@@ -25,8 +32,10 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <!-- Font Awesome Icon -->
+    <script src="https://use.fontawesome.com/ef7c61bda8.js"></script>
 </head>
-<body>
+<body style="background-color: #87AFC7;">
   <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
@@ -51,10 +60,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><img src="/innobio_logo.png" alt="innobio_logo" style="width:100px;height:40px;"></li>
-                        <li><a href="{{ route('production-technician.index') }}">Production</a></li>
-                        <li><a href="{{ route('login') }}">Stock</a></li>
-                        <li><a href="{{ route('report.index') }}">Report</a></li>
-                        <li><a href="{{ route('users-technician.index') }}">Profile</a></li>
+                        <li><a href="{{ route('production-technician.index') }}"><i class="fa fa-product-hunt" aria-hidden="true"></i> Production</a></li>
+                        <li><a href="{{ route('stock-technician.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Stock</a></li>
+                        <li><a href="{{ route('report-technician.create') }}"><i class="fa fa-file-text" aria-hidden="true"></i> Report</a></li>
+                        <li><a href="{{ route('users-technician.index') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -94,5 +103,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    {!! Html::script('js/select2.min.js')!!}
+    {!! Html::script('js/jquery-3.2.1.js')!!}
+    {!! Html::script('js/jquery.tabledit.min.js')!!}
+    @yield('script')
 </body>
 </html>

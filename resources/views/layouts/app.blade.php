@@ -15,8 +15,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
     {!! Html::style('css/select2.min.css')!!}
     @yield('stylesheets')
@@ -29,7 +36,7 @@
     <!-- Font Awesome Icon -->
     <script src="https://use.fontawesome.com/ef7c61bda8.js"></script>
 </head>
-<body>
+<body style="background-color: #87AFC7;">
   <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
@@ -57,8 +64,9 @@
                         <li><a href="{{ route('production.index') }}"><i class="fa fa-product-hunt" aria-hidden="true"></i> Production</a></li>
                         <li><a href="{{ route('stock.index') }}"> <i class="fa fa-list-alt" aria-hidden="true"></i> Stock</a></li>
                         <li><a href="{{ route('items.create') }}"><i class="fa fa-flask" aria-hidden="true"></i> Item</a></li>
-                        <li><a href="{{ route('login') }}"><i class="fa fa-money" aria-hidden="true"></i> Financial</a></li>
-                        <li><a href="{{ route('login') }}"><i class="fa fa-file-text" aria-hidden="true"></i> Report</a></li>
+                        <li><a href="{{ route('finance') }}"><i class="fa fa-money" aria-hidden="true"></i> Financial</a></li>
+                        <li><a href="{{ route('report.create') }}"><i class="fa fa-file-text" aria-hidden="true"></i> Report</a></li>
+                        <li><a href="{{ route('order.olist') }}"><i class="fa fa-list" aria-hidden="true"></i></i> Order</a></li>
                         <li><a href="{{ route('users.index') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                     </ul>
 
@@ -76,7 +84,6 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -103,6 +110,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     {!! Html::script('js/select2.min.js')!!}
+    {!! Html::script('js/jquery-3.2.1.js')!!}
+    {!! Html::script('js/jquery.tabledit.min.js')!!}
     @yield('script')
 </body>
 </html>

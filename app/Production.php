@@ -11,4 +11,11 @@ class Production extends Model
     public function users(){
       return $this -> belongsToMany('App\User');
     }
+
+    public function report(){
+      return $this -> hasOne('App\Report', 'p_name');
+    }
+    public function depart(){
+      return $this -> belongsTo('App\Deparment');//depart_id to link it
+    }
 }

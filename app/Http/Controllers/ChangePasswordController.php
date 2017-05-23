@@ -9,10 +9,10 @@ use App\User;
 use Auth;
 class ChangePasswordController extends Controller
 {
-  public function showForm()
-  {
-    return view('auth.change_password');
-  }
+  //public function showForm()
+  //{
+//return view('auth.change_password');
+  //}
 
   public function changePassword(){
     $User = User::find(Auth::user()->id);

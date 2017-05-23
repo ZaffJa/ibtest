@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/crudetable','CrudeController@crude');
 Route::get('/home', 'HomeController@index');
 //login
 Route::get('/admin', function () {return view('admin');})->name('admin');
@@ -32,42 +32,39 @@ Route::post('change/password', 'ChangePasswordController@changePassword');
 Route::resource('users', 'UsersController');
 Route::resource('items', 'ItemController');
 Route::resource('stock', 'StockController');
+Route::post('/edit', 'StockController@edit');
+Route::get('/itemName', 'StockController@itemName');
+Route::resource('report', 'ReportController');
+Route::post('/editName', 'ReportController@editName');
+Route::get('/show', 'OrderController@show')->name('order.olist');
+Route::get('/approve/{id}', 'OrderController@approve')->name('order.approve');
+Route::get('/financial',function(){
+  return view('financial');
+})->name('finance');
 //Engineer
 Route::resource('users-engineer', 'Users_EngineerController');
 Route::resource('items-engineer', 'Item_EngineerController');
 Route::resource('supplier', 'SupplierController');
+//Route::get('/order/index', 'OrderController@index')->name('order');
+Route::resource('order', 'OrderController');
+Route::get('/company_details', 'OrderController@company_details');
+Route::get('/item_total', 'OrderController@item_total');
+Route::get('/showEngineer', 'OrderController@showEngineer')->name('order.olist-engineer');
+Route::resource('stock-engineer', 'Stock_EngineerController');
+Route::post('/editEng', 'Stock_EngineerController@editEng');
+Route::resource('report-engineer', 'Report_EngineerController');
+Route::post('/editNameEng', 'Report_EngineerController@editNameEng');
 //Technician
 Route::resource('users-technician', 'Users_TechnicianController');
+Route::resource('report-technician', 'Report_TechnicianController');
+Route::post('/editNameTech', 'Report_TechnicianController@editNameTech');
+Route::resource('stock-technician', 'Stock_TechnicianController');
+Route::post('/editTech', 'Stock_TechnicianController@editTech');
 
 
-Route::group(['middleware' => ['web']], function(){
-  Route::resource('production', 'ProductionController');
-});
-
-Route::group(['middleware' => ['web']], function(){
-  Route::resource('production-technician', 'Production_TechnicianController');
-});
-
-Route::group(['middleware' => ['web']], function(){
-  Route::resource('production-engineer', 'Production_EngineerController');
-});
-
-Route::group(['middleware' => ['web']], function(){
-  Route::resource('stock', 'StockController');
-});
-
-Route::group(['middleware' => ['web']], function(){
-  Route::resource('report', 'ReportController');
-});
-
-
-
-
-
-
-
-
-
+Route::resource('production', 'ProductionController');
+Route::resource('production-technician', 'Production_TechnicianController');
+Route::resource('production-engineer', 'Production_EngineerController');
 
 
 

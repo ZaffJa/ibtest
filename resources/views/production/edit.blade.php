@@ -28,17 +28,15 @@
                               </div>
                           </div>
 
-                          <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
+                          <div class="form-group">
                               <label for="department" class="col-md-4 control-label">Department</label>
 
                               <div class="col-md-6">
-                                  <input id="department" type="department" class="form-control" name="department" value="{{ $production->department }}" required>
-
-                                  @if ($errors->has('department'))
-                                      <span class="help-block">
-                                          <strong>{{ $errors->first('department') }}</strong>
-                                      </span>
-                                  @endif
+                                <select class="form-control deparment" name="deparment" id="deparment">
+                                  @foreach($deparments as $deparment)
+                                    <option value='{{ $deparment->id }}'>{{ $deparment->depart_name }}</option>
+                                  @endforeach
+                                </select>
                               </div>
                           </div>
 

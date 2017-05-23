@@ -31,13 +31,12 @@
                               <label for="department" class="col-md-4 control-label">Department</label>
 
                               <div class="col-md-6">
-                                  <input id="department" type="department" class="form-control" name="department" value="{{ old('department') }}" required>
-
-                                  @if ($errors->has('department'))
-                                      <span class="help-block">
-                                          <strong>{{ $errors->first('department') }}</strong>
-                                      </span>
-                                  @endif
+                                <select class="form-control deparment" name="deparment" id="deparment">
+                                  <option value="0" disabled="true" selected="true">-Select Department-</option>
+                                  @foreach($deparments as $deparment)
+                                    <option value='{{ $deparment->id }}'>{{ $deparment->depart_name }}</option>
+                                  @endforeach
+                                </select>
                               </div>
                           </div>
 
@@ -87,8 +86,8 @@
     <div class="row">
       <!-- <div class="col-md-10 col-md-offset-1">-->
       <div class="col-md-8 col-md-offset-2">
-        <table class="table table-striped">
-          <tr>
+        <table class="table" style="background-color:#E5E4E2">
+          <tr style="background-color:#848482">
             <th>No.</th>
             <th>Production Name</th>
             <th>Department</th>
@@ -102,7 +101,7 @@
             <tr>
               <td>{{$no++}}</td>
               <td>{{$production->prod_name}}</td>
-              <td>{{$production->department}}</td>
+              <td>{{$production->depart->depart_name}}</td>
               <td>
                 @foreach($production->users as $user)
                     <li>{{ $user->name}}</li>

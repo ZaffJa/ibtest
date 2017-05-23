@@ -28,8 +28,8 @@
     <div class="row">
       <!-- <div class="col-md-10 col-md-offset-1">-->
       <div class="col-md-12 ">
-        <table class="table table-striped">
-          <tr>
+        <table class="table" style="background-color:#E5E4E2">
+          <tr style="background-color:#848482">
             <th>No.</th>
             <th style="width:10%">Company's Name</th>
             <th style="width:23%">Address</th>

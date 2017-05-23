@@ -46,7 +46,7 @@
                           <div class="form-group">
                               <div class="col-md-6 col-md-offset-4">
                                   <button type="submit" class="btn btn-success">Save</button>
-                                  <a href="{{ route('items-engineer.index') }}" class="btn btn-primary">View Item</a>
+                                  <a href="{{ route('items-engineer.index') }}" class="btn btn-warning">View Item</a>
                               </div>
                           </div>
 

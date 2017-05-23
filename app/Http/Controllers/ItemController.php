@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Item;
 use Session;
+use Auth;
 
 class ItemController extends Controller
 {
@@ -15,10 +16,6 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //$search = Request::get('search');
-        //$productions = Production::where('title','like','%'.$search.'%')->orderBy('id')->paginate(3);
-        //show data with pagination--can change pagination number through here
-        //$productions = Production::select("*")->paginate(2);
         $items = Item::select("*")->paginate(10);
         return view('items.index', ['items' => $items]);
     }
@@ -44,13 +41,15 @@ class ItemController extends Controller
         //validation
         $this->validate($request,[
           'category_id'=>'required',
-          'description'=>'required',
+          'description'=>'required|unique:item',
         ]);
 
         //create new data
         $items = new item;
         $items->category_id = $request->category_id;
         $items->description = $request->description;
+        $items->added_by = Auth::user()->name;
+        $items->modified_by = Auth::user()->name;
         $items->save();
         Session::flash('success', 'Data has been saved!');
         return redirect()->route('items.create');
@@ -115,6 +114,7 @@ class ItemController extends Controller
         //Delete Data
         $items = Item::findOrFail($id);
         $items -> delete();
-        return redirect()->route('items.index')->with('success', 'Data has been deleted!');
+        Session::flash('success', 'Data has been deleted!');
+        return redirect()->route('items.index');
     }
 }

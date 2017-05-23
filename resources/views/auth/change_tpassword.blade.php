@@ -72,21 +72,4 @@
     </div>
 </div>
 
-
-@if(session('success'))
-<script type="text/javascript">
-  $(document).ready(function(){
-    alertify.success('{{session('success')}}');
-  });
-</script>
-@endif
-
-@if(session('error'))
-<script type="text/javascript">
-  $(document).ready(function()){
-    alertify.error('{{session('error')}}');
-  });
-</script>
-@endif
-
 @endsection

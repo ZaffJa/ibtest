@@ -43,7 +43,7 @@
                   <input type="hidden" name="_method" value="delete">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <a href="{{ route('items.edit',$item->id) }}" class="btn btn-primary">Edit</a>
-                  <input type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete this data?')"name="name" value="Delete">
+                  <input type="submit" class="btn btn-danger" onclick="return ConfirmDelete()"name="name" value="Delete">
                 </form>
               </td>
             </tr>
@@ -57,3 +57,16 @@
   </div>
 
 @endsection
+
+<script>
+
+  function ConfirmDelete()
+  {
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+    return true;
+  else
+    return false;
+  }
+
+</script>

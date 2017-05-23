@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 col-md-offset-8">
-      <a href="{{ url('/change_tpassword') }}" class="btn btn-primary pull-right">Change Password</a>
+      <a href="{{ url('/change_tpassword') }}" class="btn btn-warning pull-right">Change Password</a>
     </div>
   </div>
 </div>
@@ -14,8 +14,8 @@
     <div class="row">
       <!-- <div class="col-md-10 col-md-offset-1">-->
       <div class="col-md-8 col-md-offset-2">
-        <table class="table table-striped">
-          <tr>
+        <table  class="table" style="background-color:#E5E4E2">
+          <tr style="background-color:#848482">
             <th>No.</th>
             <th>Name</th>
             <th>E-mail</th>

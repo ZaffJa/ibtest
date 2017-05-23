@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Report;
 use App\Production;
-use App\Users;
+use Response;
+use Auth;
+use Illuminate\Support\Facades\Input;
+use Session;
 
 class ReportController extends Controller
 {
@@ -21,7 +24,8 @@ class ReportController extends Controller
         //$productions = Production::where('title','like','%'.$search.'%')->orderBy('id')->paginate(3);
         //show data with pagination--can change pagination number through here
         $reports = Report::all();
-        return view('report.index', ['reports' => $reports]);
+        $productions = Production::all();
+        return view('report.index')->withReports($reports)->withProductions($productions);
     }
 
     /**
@@ -31,8 +35,8 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
-        return view('report.index');
+        $productions = Production::all();
+        return view('report.create')->withProductions($productions);
     }
 
     /**
@@ -45,27 +49,26 @@ class ReportController extends Controller
     {
         //validation
         $this->validate($request,[
-          'prod_name'=>'required',
           'process'=>'required',
-          'achievement'=>'required',
-          'prob_cause'=>'required',
-          'solution'=>'required',
-          'added_by'=>'required',
 
         ]);
 
         //create new data
-        $production = new production;
-        $production->prod_name = $request->prod_name;
-        $report = new report;
+        $report = new Report;
+        //$report->prod_id = Production::where('prod_name','=', $prod);
+        $prod = Input::get('prod_id');
+        //$poid = Production::find('prod_name')->where('id', '=', $prod);
+        $report->p_name = $prod;
         $report->process = $request->process;
         $report->achievement = $request->achievement;
         $report->prob_cause = $request->prob_cause;
         $report->solution = $request->solution;
-        $users = new users;
-        $users->added_by = $request->added_by;
+        $report->added_by = Auth::user()->name;
+        $report->modified_by = Auth::user()->name;
+
         $report->save();
-        return redirect()->route('report.index')->with('alert-success', 'Data has been saved!');
+        Session::flash('success', 'Data has been saved!');
+        return redirect()->route('report.create')->with('alert-success', 'Data has been saved!');
     }
 
     /**
@@ -87,7 +90,7 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-
+      //
     }
 
     /**
@@ -114,4 +117,19 @@ class ReportController extends Controller
         //Delete Data
 
     }
+
+    public function editName(Request $request)
+    {
+      $report = Report::find($request->id);
+      //$report->p_name = $request->prod;
+      $report->process = $request->process;
+      $report->achievement = $request->achievement;
+      $report->prob_cause = $request->prob_cause;
+      $report->solution = $request->solution;
+      $report->modified_by = Auth::user()->name;
+      $report->save();
+      Session::flash('success', 'Data has been saved!');
+      return response()->json($report);
+    }
+
 }

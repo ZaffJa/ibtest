@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{{ route('supplier.index') }}" class="btn btn-primary">View Suppliers</a>
+                                <a href="{{ route('supplier.index') }}" class="btn btn-warning">View Suppliers</a>
                             </div>
                         </div>
 

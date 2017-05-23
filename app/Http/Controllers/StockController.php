@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Stock;
 use App\Item;
+use App\Category;
 use Session;
 use Auth;
 use Illuminate\Support\Facades\Input;
@@ -18,14 +18,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //$search = Request::get('search');
-        //$productions = Production::where('title','like','%'.$search.'%')->orderBy('id')->paginate(3);
-        //show data with pagination--can change pagination number through here
-        //$productions = Production::select("*")->paginate(2);
-        //$stocks = Stock::select("*")->paginate(2);
         $items = Item::all();
-        $stocks = Stock::all();
-        return view('stock.index')->withStocks($stocks)->withItems($items);
+        return view('stock.index')->withItems($items);
     }
 
     /**
@@ -35,8 +29,7 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
-        return view('stock.index');
+      //
     }
 
     /**
@@ -47,24 +40,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //validation
-        $this->validate($request,[
-          'item_id'=>'required',
-          'quantity'=>'required',
-        ]);
-
-        //create new data
-        $stock = Stock::updateOrCreate(
-          ['item_id' => $request->item_id, 'quantity' => $request->quantity]
-        );
-
-        $stock = new Stock;
-        $stock->added_by = Auth::user()->name;
-        $stock->modified_by = Auth::user()->name;
-        $stock->save();
-
-        $request->session()->flash('success', 'New Stock has been created');
-        return redirect()->route('stock.index');
+      //
     }
 
     /**
@@ -84,8 +60,14 @@ class StockController extends Controller
      * @param  int  $prod_id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
+      $items = Item::find ($request->id);
+      $items->quantity = $request->quantity;
+      $items->added_by = Auth::user()->name;
+      $items->modified_by = Auth::user()->name;
+      $items->save();
+      return response()->json($items);
 
     }
 
@@ -98,7 +80,7 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+      //
     }
 
     /**
@@ -109,6 +91,8 @@ class StockController extends Controller
      */
     public function destroy($id)
     {
-
+    //
     }
+
+
 }

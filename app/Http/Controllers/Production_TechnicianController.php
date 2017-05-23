@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Production;
-
+use App\Deparment;
 class Production_TechnicianController extends Controller
 {
     /**
@@ -33,13 +33,13 @@ class Production_TechnicianController extends Controller
           $productions = $productions->orderBy('name', request('sort'));
           $queries['sort'] = request('sort');
         }
-
-        $productions = $productions->paginate(2)->appends('$queries');
+        $deparments = Deparment::all();
+        $productions = $productions->paginate(10)->appends('$queries');
         //$search = Request::get('search');
         //$productions = Production::where('title','like','%'.$search.'%')->orderBy('id')->paginate(3);
         //show data with pagination--can change pagination number through here
         //$productions = Production::select("*")->paginate(2);
-        return view('production-technician.index', ['productions' => $productions]);
+        return view('production-technician.index', ['productions' => $productions])->withDeparments($deparments);
     }
 
     /**

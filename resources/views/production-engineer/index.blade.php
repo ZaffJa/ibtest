@@ -22,8 +22,8 @@
     <div class="row">
       <!-- <div class="col-md-10 col-md-offset-1">-->
       <div class="col-md-8 col-md-offset-2">
-        <table class="table table-striped">
-          <tr>
+        <table class="table" style="background-color:#E5E4E2">
+          <tr style="background-color:#848482">
             <th>No.</th>
             <th>Production Name</th>
             <th>Department</th>
@@ -36,8 +36,12 @@
             <tr>
               <td>{{$no++}}</td>
               <td>{{$production->prod_name}}</td>
-              <td>{{$production->department}}</td>
-              <td>{{$production->team_member}}</td>
+              <td>{{$production->depart->depart_name}}</td>
+              <td>
+                @foreach($production->users as $user)
+                    <li>{{ $user->name}}</li>
+                @endforeach
+              </td>
 
             </tr>
           @endforeach
